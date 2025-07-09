@@ -10,32 +10,13 @@ export const eslintBoundariesConfig = {
         alwaysTryTypes: true,
       },
     },
-
     "boundaries/elements": [
-      {
-        type: "app",
-        pattern: "./src/app",
-      },
-      {
-        type: "pages",
-        pattern: "./src/pages*",
-      },
-      {
-        type: "widgets",
-        pattern: "./src/widgets*",
-      },
-      {
-        type: "features",
-        pattern: "./src/features*",
-      },
-      {
-        type: "entities",
-        pattern: "./src/entities*",
-      },
-      {
-        type: "shared",
-        pattern: "./src/shared*",
-      },
+      { type: "app",      pattern: "./src/app/**" },
+      { type: "pages",    pattern: "./src/pages/**" },
+      { type: "widgets",  pattern: "./src/widgets/**" },
+      { type: "features", pattern: "./src/features/**" },
+      { type: "entities", pattern: "./src/entities/**" },
+      { type: "shared",   pattern: "./src/shared/**" },
     ],
   },
   rules: {
@@ -80,8 +61,8 @@ export const eslintBoundariesConfig = {
             message:
               "Модуль нижележащего слоя (${file.type}) не может импортировать модуль вышележащего слоя (${dependency.type})",
           },
-        ]
-      }
+        ],
+      },
     ],
     "boundaries/entry-point": [
       2,
@@ -89,18 +70,17 @@ export const eslintBoundariesConfig = {
         default: "disallow",
         message:
           "Модуль (${file.type}) должен импортироваться через public API. Прямой импорт из ${dependency.source} запрещен",
-        
         rules: [
           {
-            target: [ "app"],
-            allow: "*"
+            target: ["app"],
+            allow: "*",
           },
           {
             target: ["pages", "widgets", "features", "entities", "shared"],
             allow: "index.(ts|tsx)",
-          }
-        ]
-      }
-    ]
-  }
+          },
+        ],
+      },
+    ],
+  },
 };
